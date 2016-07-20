@@ -2,6 +2,9 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Contact;
+use App\Conversation;
+
 
 use Illuminate\Http\Request;
 
@@ -38,9 +41,23 @@ class PagesController extends Controller {
 	{
 		return view('pages.composer');
 	}
+	public function form()
+	{
+		return view('pages.form');
+	}
+	public function storecontacts(Requests\ContactRequest $request)
+	{
+$Contacts = Contact :: Create($request->all());
+      //  dd($Eusers);
+
+        $Contacts->save();
+		return redirect('contacts');
+	}
 	public function contacts()
 	{
-		return view('pages.contacts');
+		$Contacts=Contact::all();
+    
+		return view('pages.contacts',compact('Contacts'));
 	}
 
 

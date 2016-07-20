@@ -7,10 +7,11 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Article extends Model implements SluggableInterface {
+class Article extends Model{
+// implements SluggableInterface {
 
-	use SoftDeletes;
-	use SluggableTrait;
+	//use SoftDeletes;
+	//use SluggableTrait;
 
 	protected $dates = ['deleted_at'];
 
@@ -18,6 +19,17 @@ class Article extends Model implements SluggableInterface {
 		'build_from' => 'title',
 		'save_to'    => 'slug',
 	];
+public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+
+
 
 	protected $guarded  = array('id');
 

@@ -20,6 +20,8 @@
 }
 </style>
 
+
+
 <div class="container-fluid" style="margin-top: 4.5%">
                 <div class="row" style="width: 50%; margin-top: 1.5%; margin-left: 0%">
                     @include('partials.notifications')
@@ -27,49 +29,18 @@
 	<div class="row text-center" style="margin-top: -10%; margin-left: 15%">
 		<div id="contct-list">
 		<span>Contacts</span>
-			<div class="row">
-				<form class="form-group" action="{{URL::to('composer')}}">
-					<label style="font-weight: bold;">Name: </label>Asif<br/>
-					<label style="font-weight: bold;">Phone: </label>0900-78601<br/>
+			
+				@foreach($Contacts as $Contact)
+				<div class="row">
+<form class="form-group" action="{{URL::to('composer')}}">
+					<label style="font-weight: bold;">Name: </label>{{$Contact->name}}<br/>
+					<label style="font-weight: bold;">Phone: </label>{{$Contact->number}}<br/>
 					<input type="submit" value="Send Message" class="btn" style="background-color: lightpink"></input>
 				</form>
-			</div>
 
-			<div class="row">
-				<form class="form-group" action="{{URL::to('composer')}}">
-					<label style="font-weight: bold;">Name: </label>Asif<br/>
-					<label style="font-weight: bold;">Phone: </label>0900-78601<br/>
-					<input type="submit" value="Send Message" class="btn" style="background-color: lightpink"></input>
-				</form>
-			</div>
-			<div class="row">
-				<form class="form-group" action="{{URL::to('composer')}}">
-					<label style="font-weight: bold;">Name: </label>Asif<br/>
-					<label style="font-weight: bold;">Phone: </label>0900-78601<br/>
-					<input type="submit" value="Send Message" class="btn" style="background-color: lightpink"></input>
-				</form>
-			</div>
-			<div class="row">
-				<form class="form-group" action="{{URL::to('composer')}}">
-					<label style="font-weight: bold;">Name: </label>Asif<br/>
-					<label style="font-weight: bold;">Phone: </label>0900-78601<br/>
-					<input type="submit" value="Send Message" class="btn" style="background-color: lightpink"></input>
-				</form>
-			</div>
-			<div class="row">
-				<form class="form-group" action="{{URL::to('composer')}}">
-					<label style="font-weight: bold;">Name: </label>Asif<br/>
-					<label style="font-weight: bold;">Phone: </label>0900-78601<br/>
-					<input type="submit" value="Send Message" class="btn" style="background-color: lightpink"></input>
-				</form>
-			</div>
-			<div class="row">
-				<form class="form-group" action="{{URL::to('composer')}}">
-					<label style="font-weight: bold;">Name: </label>Asif<br/>
-					<label style="font-weight: bold;">Phone: </label>0900-78601<br/>
-					<input type="submit" value="Send Message" class="btn" style="background-color: lightpink"></input>
-				</form>
-			</div>
+
+@endforeach
+				
 
 		</div>
 	</div>
