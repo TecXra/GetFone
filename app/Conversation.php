@@ -14,4 +14,9 @@ class Conversation extends Model
            'check'
     ];
     
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

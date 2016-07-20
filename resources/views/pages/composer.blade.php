@@ -254,11 +254,16 @@ $("#send").click(function () {
                     @include('partials.notifications')
                 </div>
     <div class="col-md-6">
+
+
+
+
+
         <form>
             <div class="chat">
                 <div class="form-group">
                     <label style="font-weight: bold;">TO: </label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value={{$Contacts->number}}>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="1">
                 </div>
                                 <!--
                     <div id="header"class="dropdown">
@@ -272,13 +277,36 @@ $("#send").click(function () {
                           </ul>
                     </div>
     -->
-                <div id="messages" class="messages">
+
+
+      
+              <div id="messages" class="messages">
                     <ul>
+
+   
+     @foreach($Conversation as $con)
+  
                         <li>
-                            <span class="left">AOA</span>
+
+                            @if($con->check=='s')
+                            <span   class="right"   >   {{$con->message}}</span>
+         @else
+                             <span   class="left"   >   {{$con->message}}</span>
+
+         @endif
+                           
+                            <div class="clear"></div>
+                   
+                        </li> 
+    @endforeach
+
+
+
+                        <li>
+                            <span class="right">AOA</span>
                             <div class="clear"></div>
                         </li> 
-                        <li>
+                <!--        <li>
                             <span class="left">How r u ?</span>
                             <div class="clear"></div>
                         </li> 
@@ -306,10 +334,11 @@ $("#send").click(function () {
                             <span class="left">Bye</span>
                             <div class="clear"></div>
                         </li> 
-
+-->
                     </ul>
                     <div class="clear"></div>
                 </div>
+            
                 <div class="flexContainer">
                     <input type="text" class="inputField">
                     <input type="submit" id="send"></button>

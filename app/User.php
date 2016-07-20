@@ -30,6 +30,10 @@ public function contacts()
         return $this->hasMany('App\Contact');
     }
 
+public function conversations()
+    {
+        return $this->hasMany('App\Conversation');
+    }
 
 
 

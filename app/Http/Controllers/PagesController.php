@@ -38,17 +38,38 @@ class PagesController extends Controller {
 	{
 		return view('pages.dashboard');
 	}
-	public function composer($id)
-	{
-$Contacts=Contact::findOrFail($id);
 
-		return view('pages.composer',compact('Contacts'));
+	public function storeconversation()
+	{
+		$Conversation = Conversation :: Create($request->all());
+		return redirect('composer');
 	}
+
+
+	public function composer($id,$number)
+	{
+
+
+		$Conversation = User::find($id)->conversations()->where('phone_number', $number)->get();
+
+	//	$cc = $Conversation[0]->message ;
+		//	dd($cc  );
+	//	return $Conversation;
+	//	$Contacts=Contact::findOrFail($id);
+		return view('pages.composer',compact('Conversation'));
+	}
+
+
+
+
+
+
+
 	public function composers(Requests\ContactRequest $request)
 	{
-
-$Contacts = contact :: Create($request->all());
-		return view('pages.composer',compact('Contacts'));
+$Conversation=Conversation::Create($request->all());
+$Contacts =Contact::Create($request->all());
+		return view('pages.composer',compact('Contacts','Conversation'));
 	}
 	public function form()
 	{
