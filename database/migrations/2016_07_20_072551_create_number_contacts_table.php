@@ -14,14 +14,14 @@ class CreateNumberContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedinteger('contacts_id')->nullable();
+            $table->unsignedinteger('user_id')->nullable();
             $table->unsignedInteger('number');
             $table->string('name');
             $table->timestamps();
-            $table->foreign('contacts_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('set null');
+                ->onDelete('cascade');
         });
 
 
@@ -30,15 +30,15 @@ class CreateNumberContactsTable extends Migration
 
          Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('conversation_id')->nullable();
-            $table->unsignedInteger('to_number');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('phone_number');
             $table->text('message');
             $table->string('check');
             $table->timestamps();
-            $table->foreign('conversation_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('set null');
+                ->onDelete('cascade');
         });
     }
 

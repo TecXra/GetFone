@@ -82,8 +82,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('login', 'PagesController@login');
     Route::resource('signup', 'PagesController@signup');
     Route::resource('dashboard', 'PagesController@dashboard');
-    Route::resource('composer', 'PagesController@composer');
-    Route::resource('contacts', 'PagesController@contacts');
+    Route::get('composer/{id}', 'PagesController@composer');
+    Route::get('composer', 'PagesController@composers');
+    Route::get('contacts/{id}', 'PagesController@contacts');
 
 
 

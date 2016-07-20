@@ -12,4 +12,16 @@ class Contact extends Model
            'number',
            'name'
     ];
+
+
+public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+
+
+
+
+
 }

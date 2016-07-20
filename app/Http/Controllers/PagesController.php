@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Contact;
+use App\User;
 use App\Conversation;
 
 
@@ -37,9 +38,17 @@ class PagesController extends Controller {
 	{
 		return view('pages.dashboard');
 	}
-	public function composer()
+	public function composer($id)
 	{
-		return view('pages.composer');
+$Contacts=Contact::findOrFail($id);
+
+		return view('pages.composer',compact('Contacts'));
+	}
+	public function composers(Requests\ContactRequest $request)
+	{
+
+$Contacts = contact :: Create($request->all());
+		return view('pages.composer',compact('Contacts'));
 	}
 	public function form()
 	{
@@ -48,15 +57,18 @@ class PagesController extends Controller {
 	public function storecontacts(Requests\ContactRequest $request)
 	{
 $Contacts = Contact :: Create($request->all());
-      //  dd($Eusers);
-
+      
         $Contacts->save();
 		return redirect('contacts');
 	}
-	public function contacts()
+	public function contacts($id)
 	{
-		$Contacts=Contact::all();
-    
+		
+     // $contacts = Contacts::find;
+      $Contacts = User::find($id)->contacts;
+     // dd($contacts);
+
+	//	$Contacts=User::findOrFail($id)->user_contacts;
 		return view('pages.contacts',compact('Contacts'));
 	}
 

@@ -253,72 +253,71 @@ $("#send").click(function () {
                 <div class="col-lg-9" style="margin-left: -35%; width: 50%">
                     @include('partials.notifications')
                 </div>
-
-                    <div class="col-md-6">
-                        <div class="chat">
-                            <div class="form-group">
-                                <label style="font-weight: bold;">TO: </label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="+923014430979" required="">
-                            </div>
-                            <!--
-                <div id="header"class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Contact
-                    </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#" data-value="Mahnoor Asif">Angela</a></li>
-                        <li><a href="#" data-value="Samia Arshad">Samia Arshad</a></li>
-                        <li><a href="#" data-value="Maimoona Rafiq">Maimoona Rafiq</a></li>
-                      </ul>
+    <div class="col-md-6">
+        <form>
+            <div class="chat">
+                <div class="form-group">
+                    <label style="font-weight: bold;">TO: </label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value={{$Contacts->number}}>
                 </div>
--->
-            <div id="messages" class="messages">
-                <ul>
-                    <li>
-                        <span class="left">AOA</span>
-                        <div class="clear"></div>
-                    </li> 
-                    <li>
-                        <span class="left">How r u ?</span>
-                        <div class="clear"></div>
-                    </li> 
-                    <li>
-                        <span class="right">WS</span>
-                        <div class="clear"></div>
-                    </li> 
-                    <li>
-                        <span class="left">What r u doing ?</span>
-                        <div class="clear"></div>
-                    </li> 
-                    <li>
-                        <span class="right">I'm fine, nothing special..</span>
-                        <div class="clear"></div>
-                    </li> 
-                    <li>
-                        <span class="left">ahan .. </span>
-                        <div class="clear"></div>
-                    </li> 
-                    <li>
-                        <span class="right">I have to go </span>
-                        <div class="clear"></div>
-                    </li> 
-                    <li>
-                        <span class="left">Bye</span>
-                        <div class="clear"></div>
-                    </li> 
+                                <!--
+                    <div id="header"class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Contact
+                        </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#" data-value="Mahnoor Asif">Angela</a></li>
+                            <li><a href="#" data-value="Samia Arshad">Samia Arshad</a></li>
+                            <li><a href="#" data-value="Maimoona Rafiq">Maimoona Rafiq</a></li>
+                          </ul>
+                    </div>
+    -->
+                <div id="messages" class="messages">
+                    <ul>
+                        <li>
+                            <span class="left">AOA</span>
+                            <div class="clear"></div>
+                        </li> 
+                        <li>
+                            <span class="left">How r u ?</span>
+                            <div class="clear"></div>
+                        </li> 
+                        <li>
+                            <span class="right">WS</span>
+                            <div class="clear"></div>
+                        </li> 
+                        <li>
+                            <span class="left">What r u doing ?</span>
+                            <div class="clear"></div>
+                        </li> 
+                        <li>
+                            <span class="right">I'm fine, nothing special..</span>
+                            <div class="clear"></div>
+                        </li> 
+                        <li>
+                            <span class="left">ahan .. </span>
+                            <div class="clear"></div>
+                        </li> 
+                        <li>
+                            <span class="right">I have to go </span>
+                            <div class="clear"></div>
+                        </li> 
+                        <li>
+                            <span class="left">Bye</span>
+                            <div class="clear"></div>
+                        </li> 
 
-                </ul>
-                <div class="clear"></div>
-            </div>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
                 <div class="flexContainer">
                     <input type="text" class="inputField">
-                    <button type="submit" id="send">Send</button>
+                    <input type="submit" id="send"></button>
                 </div>
-                 </div>  
-                   <div class="container-fluid text-center">
-                                    <a href="{{URL::to('dashboard')}}" id="link" class="blink">
-                                Disconnect
-                            </a>
-                     </div>
-                     </div>
+            </div>  
+        </form>
+        <div class="container-fluid text-center">
+            <a href="{{URL::to('dashboard')}}" id="link" class="blink">Disconnect</a>
+        </div>
+    </div>
                             

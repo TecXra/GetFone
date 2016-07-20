@@ -32,11 +32,14 @@
 			
 				@foreach($Contacts as $Contact)
 				<div class="row">
-<form class="form-group" action="{{URL::to('composer')}}">
+    
+	        
 					<label style="font-weight: bold;">Name: </label>{{$Contact->name}}<br/>
 					<label style="font-weight: bold;">Phone: </label>{{$Contact->number}}<br/>
-					<input type="submit" value="Send Message" class="btn" style="background-color: lightpink"></input>
-				</form>
+					<button><a href="{{action('PagesController@composer',[ $Contact->id]) }}">send message</a>
+</button>
+				
+
 
 
 @endforeach
