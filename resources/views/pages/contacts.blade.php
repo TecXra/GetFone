@@ -36,7 +36,7 @@
 	        
 					<label style="font-weight: bold;">Name: </label>{{$Contact->name}}<br/>
 					<label style="font-weight: bold;">Phone: </label>{{$Contact->number}}<br/>
-					<button><a href="{{action('PagesController@composer',[ $Contact->id]) }}">send message</a>
+					<button><a href="{{action('PagesController@composer',[ 1,$Contact->number]) }}">send message</a>
 </button>
 				
 
