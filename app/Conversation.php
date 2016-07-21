@@ -9,7 +9,7 @@ class Conversation extends Model
 	protected $fillable = [
 
 
-          'to_number',
+          'phone_number',
           'message',
            'check'
     ];

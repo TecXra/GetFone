@@ -38,11 +38,51 @@ class PagesController extends Controller {
 	{
 		return view('pages.dashboard');
 	}
-
-	public function storeconversation()
+public function tokenupdate($id)
 	{
-		$Conversation = Conversation :: Create($request->all());
-		return redirect('composer');
+		$user=User::findOrFail($id);
+        $user->update($request->all());
+        return "200";
+	}
+
+
+
+public function storerecieveconversation(Requests\ContactRequest $request)
+	{
+
+		//dd($request);
+
+		$Conversation=Conversation::Create($request->all());
+		$Conversation->user_id='1';
+		$Conversation->check='r';
+		
+		$Conversation->save();
+dd($Conversation);
+      $composer = 'composer/' . $con->user_id . '/' . $con->phone_number ;
+
+//return "$emprofile";
+return "200";
+ 
+		return redirect($composer);
+	}
+
+
+	public function storesendconversation(Request $request)
+	{
+
+		dd($request);
+
+		$Conversation=Conversation::Create($request->all());
+		$Conversation->user_id='1';
+		
+		$Conversation->save();
+
+      $composer = 'composer/' . $con->user_id . '/' . $con->phone_number ;
+
+//return "$emprofile";
+
+ 
+		return redirect($composer);
 	}
 
 
@@ -55,7 +95,7 @@ class PagesController extends Controller {
 	//	$cc = $Conversation[0]->message ;
 		//	dd($cc  );
 	//	return $Conversation;
-	//	$Contacts=Contact::findOrFail($id);
+		//$Contacts=Contact::findOrFail($id);
 		return view('pages.composer',compact('Conversation'));
 	}
 
@@ -75,31 +115,28 @@ $Contacts =Contact::Create($request->all());
 	{
 		return view('pages.form');
 	}
+	
+public function storecontacts(Requests\ContactRequest $request)
+    {
+              $input = $request->input();
+         
+                $number        = $input['number'];
+                  $name          = $input['name'];
+               $contacts = [];
+                  for ($i = 0; $i <  count( $input['name']); $i++) {
+                        $contacts[] =   new Contact
+                                      ( [
+                                          'number'  => $number[$i],
+                                          'name'    => $name[$i],
+                                       ] );
+                  }
 
+               $user = User::find(1);       
 
-	public function storecontacts(Requests\ContactRequest $request)
-	{
-			  $input = $request->input();
-          
-                 $number        = $input['number'];
-                   $name          = $input['name'];
-                $contacts = [];
-                   for ($i = 0; $i <  count( $input['name']); $i++) {
-						$contacts[] =   new Contact
-                                       ( [
-                                           'number'  => $number[$i],
-                                           'name'    => $name[$i],
-                                        ] );
-                   }
-
-                $user = User::find(1);   	
-
-					$user->contacts()->saveMany($contacts);
-                    //  return "200";
-		return redirect('contacts');
-	}
-
-
+                    $user->contacts()->saveMany($contacts);
+                     return "200";
+        return redirect('contacts');
+    }
 
 	public function contacts($id)
 	{

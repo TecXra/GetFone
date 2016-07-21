@@ -259,11 +259,14 @@ $("#send").click(function () {
 
 
 
-        <form>
+        <form action="storesendconversation" files="true" type="post">
+  
+
             <div class="chat">
+               
                 <div class="form-group">
                     <label style="font-weight: bold;">TO: </label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="1">
+                    <input type="text" name="phone_number"class="form-control" id="exampleInputEmail1" value="3154342359">
                 </div>
                                 <!--
                     <div id="header"class="dropdown">
@@ -301,12 +304,12 @@ $("#send").click(function () {
     @endforeach
 
 
-
+ <!--  
                         <li>
                             <span class="right">AOA</span>
                             <div class="clear"></div>
                         </li> 
-                <!--        <li>
+                     <li>
                             <span class="left">How r u ?</span>
                             <div class="clear"></div>
                         </li> 
@@ -340,8 +343,9 @@ $("#send").click(function () {
                 </div>
             
                 <div class="flexContainer">
-                    <input type="text" class="inputField">
-                    <input type="submit" id="send"></button>
+                    <input type="text" name="message"class="inputField">
+                    <input type="hidden" name="check" value="s">
+                    <input type="submit" value="send" id="send">
                 </div>
             </div>  
         </form>
