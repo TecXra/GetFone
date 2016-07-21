@@ -259,14 +259,14 @@ $("#send").click(function () {
 
 
 
-        <form action="storesendconversation" files="true" type="post">
+        <form action="/storesendconversation" files="true" method="post">
   
 
             <div class="chat">
                
                 <div class="form-group">
                     <label style="font-weight: bold;">TO: </label>
-                    <input type="text" name="phone_number"class="form-control" id="exampleInputEmail1" value="3154342359">
+                    <input type="text" name="phone_number"class="form-control" id="exampleInputEmail1" value="{{$num}}">
                 </div>
                                 <!--
                     <div id="header"class="dropdown">

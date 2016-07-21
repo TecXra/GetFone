@@ -57,8 +57,8 @@ public function storerecieveconversation(Requests\ContactRequest $request)
 		$Conversation->check='r';
 		
 		$Conversation->save();
-dd($Conversation);
-      $composer = 'composer/' . $con->user_id . '/' . $con->phone_number ;
+//dd($Conversation);
+      $composer = 'composer/' . $Conversation->user_id . '/' . $Conversation->phone_number ;
 
 //return "$emprofile";
 return "200";
@@ -67,17 +67,17 @@ return "200";
 	}
 
 
-	public function storesendconversation(Request $request)
+	public function storesendconversation(Requests\ContactRequest $request)
 	{
 
-		dd($request);
+	//	dd($request);
 
 		$Conversation=Conversation::Create($request->all());
 		$Conversation->user_id='1';
 		
 		$Conversation->save();
 
-      $composer = 'composer/' . $con->user_id . '/' . $con->phone_number ;
+      $composer = 'composer/' . $Conversation->user_id . '/' . $Conversation->phone_number ;
 
 //return "$emprofile";
 
@@ -96,7 +96,10 @@ return "200";
 		//	dd($cc  );
 	//	return $Conversation;
 		//$Contacts=Contact::findOrFail($id);
-		return view('pages.composer',compact('Conversation'));
+
+$num=$number;
+
+		return view('pages.composer',compact('Conversation','num'));
 	}
 
 
