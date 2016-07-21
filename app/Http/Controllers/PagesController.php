@@ -54,13 +54,32 @@ $Contacts = contact :: Create($request->all());
 	{
 		return view('pages.form');
 	}
+
+
 	public function storecontacts(Requests\ContactRequest $request)
 	{
-$Contacts = Contact :: Create($request->all());
-      
-        $Contacts->save();
+			  $input = $request->input();
+          
+                 $number        = $input['number'];
+                   $name          = $input['name'];
+                $contacts = [];
+                   for ($i = 0; $i <  count( $input['name']); $i++) {
+						$contacts[] =   new Contact
+                                       ( [
+                                           'number'  => $number[$i],
+                                           'name'    => $name[$i],
+                                        ] );
+                   }
+
+                $user = User::find(1);   	
+
+					$user->contacts()->saveMany($contacts);
+                    //  return "200";
 		return redirect('contacts');
 	}
+
+
+
 	public function contacts($id)
 	{
 		

@@ -31,10 +31,10 @@ class GetFoneSeeder extends Seeder
 			'confirmed' => 1,
 			'confirmation_code' => md5(microtime() . env('APP_KEY')),
 		]);
-
-
-
 */
+
+
+
         	\App\Contact::create([
 			'user_id' => '1',
 			'number' => '03154342359',
