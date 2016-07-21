@@ -87,6 +87,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('composer', 'PagesController@composers');
     Route::get('contacts/{id}', 'PagesController@contacts');
 
+    Route::post('tokenupdate', 'PagesController@tokenupdate');
+
     Route::get('ghazal', 'PagesController@ghazal');
 
     Route::post('storerecieveconversation', 'PagesController@storerecieveconversation');

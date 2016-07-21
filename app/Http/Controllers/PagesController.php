@@ -43,10 +43,11 @@ class PagesController extends Controller {
 
 
 
-public function tokenupdate($id)
+public function tokenupdate(Requests\ContactRequest $request)
 	{
-		$user=User::findOrFail($id);
+		$user=User::findOrFail($request->id);
         $user->update($request->all());
+
         return "200";
 	}
 
