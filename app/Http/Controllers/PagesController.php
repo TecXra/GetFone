@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Contact;
 use App\User;
 use App\Conversation;
-
+use GuzzleHttp\Client;
 
 use Illuminate\Http\Request;
 
@@ -38,6 +38,11 @@ class PagesController extends Controller {
 	{
 		return view('pages.dashboard');
 	}
+
+
+
+
+
 public function tokenupdate($id)
 	{
 		$user=User::findOrFail($id);
@@ -74,16 +79,43 @@ return "200";
 
 		$Conversation=Conversation::Create($request->all());
 		$Conversation->user_id='1';
-		
 		$Conversation->save();
+		$composer = 'composer/' . $Conversation->user_id . '/' . $Conversation->phone_number ;
 
-      $composer = 'composer/' . $Conversation->user_id . '/' . $Conversation->phone_number ;
 
-//return "$emprofile";
 
- 
 		return redirect($composer);
 	}
+
+
+
+public function ghazal()
+{
+
+$token = "cq4HJxeZ8x4:APA91bFg-urUrp820CyLUVdDjdDX5BKv-zJnVIt0lVodqZgDmyAQA6wMnOr0Qy_Iq1Pqil-y8fcDmet9X9s-Tad1Zyf144m8OKORi-9zgvjkhCUCxHhsrANoHAKs08JtNEbpBZcUnOvh";
+	$headers = ['Content-Type' => 'application/json',
+		'Authorization' => 'key=AIzaSyA3LJ5StdqrfmIkJW44cu3v5SAFE8JkJSE'
+	];
+
+
+		$client = new Client();
+
+	$r = $client->request('POST', 'https://gcm-http.googleapis.com/gcm/send',$headers ,[
+    'json' => 	[	'to' 	=> $token,
+
+    				'data' 	=> 	[	'messageBody' => 'hello.. saad bhai from Sehar',
+     							'sendTo' => '03214604811'
+     							]
+    			]
+]);
+}
+
+
+
+
+
+
+
 
 
 	public function composer($id,$number)
