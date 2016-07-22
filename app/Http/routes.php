@@ -77,6 +77,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 
 
+
+
+
+
+
     Route::get('form', 'PagesController@form');
     Route::post('storecontacts', 'PagesController@storecontacts');
     Route::post('storesendconversation', 'PagesController@storesendconversation');
@@ -84,7 +89,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('signup', 'PagesController@signup');
     Route::resource('dashboard', 'PagesController@dashboard');
     Route::get('composer/{id}/{number}', 'PagesController@composer');
-    Route::get('composer', 'PagesController@composers');
+ //   Route::get('composer', 'PagesController@composers');
     Route::get('contacts/{id}', 'PagesController@contacts');
 
     Route::post('tokenupdate', 'PagesController@tokenupdate');

@@ -35,8 +35,9 @@ class PagesController extends Controller {
 		return view('pages.signup');
 	}
 	public function dashboard()
-	{
-		return view('pages.dashboard');
+	{   
+		$user = User::find(1);
+		return view('pages.dashboard',compact('user'));
 	}
 
 
@@ -75,13 +76,42 @@ return "200";
 
 	public function storesendconversation(Requests\ContactRequest $request)
 	{
+		$user = User::find(1);	
+
+		$token = $user->token;
+   		$headers = ['Content-Type' => 'application/json',
+       'Authorization' => 'key=AIzaSyA3LJ5StdqrfmIkJW44cu3v5SAFE8JkJSE'
+   ];
+
+
+       $client = new Client();
+
+   $r = $client->request('POST', 'https://gcm-http.googleapis.com/gcm/send',[
+         'headers' => $headers ,
+  'json' =>     [    'to'     => $token,
+
+                  'data'     =>     [    'messageBody' => $request->message,
+                               'sendTo' => $request->phone_number
+                               ]
+              ]
+]);
 
 	//	dd($request);
 
+
+//		$Conversation=Conversation::Create($request->all());
+	//	$Contacts =Contact::Create($request->all());
+	//	return view('pages.composer',compact('Contacts','Conversation'));
+	
+
+
+
+
 		$Conversation=Conversation::Create($request->all());
-		$Conversation->user_id='1';
+		$Conversation->user_id=$user->id;
 		$Conversation->save();
-		$composer = 'composer/' . $Conversation->user_id . '/' . $Conversation->phone_number ;
+		
+		$composer = 'composer/' .$Conversation->user_id . '/' .  $Conversation->phone_number ;
 
 
 
@@ -90,28 +120,27 @@ return "200";
 
 
 
-public function ghazal()
-{
+ public function ghazal()
+   
+   {
+      	$token = "cq4HJxeZ8x4:APA91bFg-urUrp820CyLUVdDjdDX5BKv-zJnVIt0lVodqZgDmyAQA6wMnOr0Qy_Iq1Pqil-y8fcDmet9X9s-Tad1Zyf144m8OKORi-9zgvjkhCUCxHhsrANoHAKs08JtNEbpBZcUnOvh";
+   		$headers = ['Content-Type' => 'application/json',
+       'Authorization' => 'key=AIzaSyA3LJ5StdqrfmIkJW44cu3v5SAFE8JkJSE'
+   ];
 
-$token = "cq4HJxeZ8x4:APA91bFg-urUrp820CyLUVdDjdDX5BKv-zJnVIt0lVodqZgDmyAQA6wMnOr0Qy_Iq1Pqil-y8fcDmet9X9s-Tad1Zyf144m8OKORi-9zgvjkhCUCxHhsrANoHAKs08JtNEbpBZcUnOvh";
-	$headers = ['Content-Type' => 'application/json',
-		'Authorization' => 'key=AIzaSyA3LJ5StdqrfmIkJW44cu3v5SAFE8JkJSE'
-	];
 
+       $client = new Client();
 
-		$client = new Client();
+   $r = $client->request('POST', 'https://gcm-http.googleapis.com/gcm/send',[
+         'headers' => $headers ,
+  'json' =>     [    'to'     => $token,
 
-	$r = $client->request('POST', 'https://gcm-http.googleapis.com/gcm/send',$headers ,[
-    'json' => 	[	'to' 	=> $token,
-
-    				'data' 	=> 	[	'messageBody' => 'hello.. saad bhai from Sehar',
-     							'sendTo' => '03214604811'
-     							]
-    			]
+                  'data'     =>     [    'messageBody' => 'hello.. saad bhai from Sehar',
+                               'sendTo' => '03214604811'
+                               ]
+              ]
 ]);
-}
-
-
+   }
 
 
 
@@ -122,15 +151,8 @@ $token = "cq4HJxeZ8x4:APA91bFg-urUrp820CyLUVdDjdDX5BKv-zJnVIt0lVodqZgDmyAQA6wMnO
 	public function composer($id,$number)
 	{
 
-
 		$Conversation = User::find($id)->conversations()->where('phone_number', $number)->get();
-
-	//	$cc = $Conversation[0]->message ;
-		//	dd($cc  );
-	//	return $Conversation;
-		//$Contacts=Contact::findOrFail($id);
-
-$num=$number;
+		$num=$number;
 
 		return view('pages.composer',compact('Conversation','num'));
 	}
@@ -139,18 +161,28 @@ $num=$number;
 
 
 
-
+/*
 
 	public function composers(Requests\ContactRequest $request)
 	{
-$Conversation=Conversation::Create($request->all());
-$Contacts =Contact::Create($request->all());
+
+		$Conversation=Conversation::Create($request->all());
+		$Contacts =Contact::Create($request->all());
 		return view('pages.composer',compact('Contacts','Conversation'));
 	}
+
+
+
+*/
+
+
+
 	public function form()
 	{
 		return view('pages.form');
 	}
+
+
 	
 public function storecontacts(Requests\ContactRequest $request)
     {
@@ -173,6 +205,8 @@ public function storecontacts(Requests\ContactRequest $request)
                      return "200";
         return redirect('contacts');
     }
+
+
 
 	public function contacts($id)
 	{
