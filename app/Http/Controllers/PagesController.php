@@ -120,34 +120,6 @@ return "200";
 
 
 
- public function ghazal()
-   
-   {
-      	$token = "cq4HJxeZ8x4:APA91bFg-urUrp820CyLUVdDjdDX5BKv-zJnVIt0lVodqZgDmyAQA6wMnOr0Qy_Iq1Pqil-y8fcDmet9X9s-Tad1Zyf144m8OKORi-9zgvjkhCUCxHhsrANoHAKs08JtNEbpBZcUnOvh";
-   		$headers = ['Content-Type' => 'application/json',
-       'Authorization' => 'key=AIzaSyA3LJ5StdqrfmIkJW44cu3v5SAFE8JkJSE'
-   ];
-
-
-       $client = new Client();
-
-   $r = $client->request('POST', 'https://gcm-http.googleapis.com/gcm/send',[
-         'headers' => $headers ,
-  'json' =>     [    'to'     => $token,
-
-                  'data'     =>     [    'messageBody' => 'hello.. saad bhai from Sehar',
-                               'sendTo' => '03214604811'
-                               ]
-              ]
-]);
-   }
-
-
-
-
-
-
-
 	public function composer($id,$number)
 	{
 
@@ -161,19 +133,8 @@ return "200";
 
 
 
-/*
-
-	public function composers(Requests\ContactRequest $request)
-	{
-
-		$Conversation=Conversation::Create($request->all());
-		$Contacts =Contact::Create($request->all());
-		return view('pages.composer',compact('Contacts','Conversation'));
-	}
 
 
-
-*/
 
 
 
