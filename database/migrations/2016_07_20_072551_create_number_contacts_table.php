@@ -15,7 +15,7 @@ class CreateNumberContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedinteger('user_id')->nullable();
-            $table->unsignedInteger('number');
+            $table->string('number');
             $table->string('name');
             $table->timestamps();
             $table->foreign('user_id')
@@ -31,7 +31,7 @@ class CreateNumberContactsTable extends Migration
          Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('phone_number');
+            $table->string('phone_number');
             $table->text('message');
             $table->string('check');
             $table->timestamps();
